@@ -34,12 +34,24 @@ class App extends Component {
   }
 
   render() {
+
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px'
+    }
+
+
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <button onClick={this.handleClick}>Swith name</button>
+        <button 
+        
+        style={style}
+        onClick={this.handleClick}>Swith name</button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
