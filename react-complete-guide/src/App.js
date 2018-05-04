@@ -9,7 +9,9 @@ class App extends Component {
       { name: "a", age: 1 },
       { name: "b", age: 2 },
       { name: "c", age: 3 }
-    ]
+    ],
+    otherState: 'some other value',
+    showPersons: false
   };
 
   handleClick = (name = "") => {
@@ -33,6 +35,10 @@ class App extends Component {
     });
   }
 
+  tooglePersonHandler = () => {
+    this.setState({ showPersons: !this.state.showPersons });
+  }
+
   render() {
 
     const style = {
@@ -53,28 +59,34 @@ class App extends Component {
         <button 
         
         style={style}
-        onClick={this.handleClick}>Swith name</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
+        onClick={this.tooglePersonHandler}>Swith name</button>
+        
+       {
+         this.state.showPersons ? 
+         <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              // two binding 
+              // click={() => this.handleClick("Max!!")} //  more inefficient
+              click={this.handleClick.bind(this, "Max!!")} //  more efficient
+              changed={this.nameChangeHandler}
+            />
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+            > 
+            </Person>
+        </div> 
+        : 
+        <p>Hidden content</p>
+      }
 
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          // two binding 
 
-          // click={() => this.handleClick("Max!!")} //  more inefficient
-          click={this.handleClick.bind(this, "Max!!")} //  more efficient
-
-
-          changed={this.nameChangeHandler}
-        />
-
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
       </div>
     );
   }
