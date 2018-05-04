@@ -2,29 +2,28 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Person from "./Person/Person";
-import Radium from 'radium';
+import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   state = {
     persons: [
-      { id: '1', name: "a", age: 1 },
-      { id: '2', name: "b", age: 2 },
-      { id: '3', name: "c", age: 3 }
+      { id: "1", name: "a", age: 1 },
+      { id: "2", name: "b", age: 2 },
+      { id: "3", name: "c", age: 3 }
     ],
     otherState: "some other value",
     showPersons: true
   };
 
- 
   nameChangeHandler = (e, personId) => {
-    const personIndex = this.state.persons.findIndex( p => {
-      return (p.id === personId);
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === personId;
     });
-    const person = {...this.state.persons[personIndex]}; // copy the person 
+    const person = { ...this.state.persons[personIndex] }; // copy the person
     // const person = Object.assign({}, this.state.persons[personIndex]); // other valid copy method
     person.name = e.target.value;
 
-    // change de old one 
+    // change de old one
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
@@ -35,9 +34,8 @@ class App extends Component {
     // const persons = this.state.persons.slice(); copy arr
     const persons = [...this.state.persons];
     persons.splice(index, 1);
-    this.setState({persons});
-  }
-
+    this.setState({ persons });
+  };
 
   tooglePersonHandler = () => {
     this.setState({ showPersons: !this.state.showPersons });
@@ -50,7 +48,11 @@ class App extends Component {
       border: "2px solid teal",
       padding: "8px",
       cursor: "pointer",
-      color: "teal"
+      color: "teal",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "green"
+      }
     };
 
     let persons;
@@ -66,35 +68,40 @@ class App extends Component {
             // click={() => this.handleClick("Max!!")} //  more inefficient
             // click={this.handleClick.bind(this, "Max!!")} //  more efficient
             click={this.deletePersonHandler.bind(this, index)}
-            changed={ (event) => {this.nameChangeHandler(event, person.id)} }
+            changed={event => {
+              this.nameChangeHandler(event, person.id);
+            }}
           />
         );
       });
       <div />;
 
-      style.backgroundColor = 'cyan';
-      style.color = 'black';
+      style.backgroundColor = "cyan";
+      style.color = "black";
+      style[":hover"].color = "red";
     }
     let classes = [];
-    
-    if (this.state.persons.length <= 2 ) {
-      classes.push('red'); // classes = ['red']
+
+    if (this.state.persons.length <= 2) {
+      classes.push("red"); // classes = ['red']
     }
-    if (this.state.persons.length <= 1 ) {
-      classes.push('bold'); // classes = ['bold']
+    if (this.state.persons.length <= 1) {
+      classes.push("bold"); // classes = ['bold']
     }
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className={classes.join(' ')} > Welcome to React </h1>
-        </header>
-        <button style={style} onClick={this.tooglePersonHandler}>
-          Toggle persons
-        </button>
+      <StyleRoot>
+        <div className="App">
+          <header className="App-header">
+            <h1 className={classes.join(" ")}> Welcome to React </h1>
+          </header>
+          <button style={style} onClick={this.tooglePersonHandler}>
+            Toggle persons
+          </button>
 
-        {persons}
-      </div>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
