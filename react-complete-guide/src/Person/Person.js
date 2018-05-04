@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import "./Person.css";
+import classes from "./Person.css";
 
 const person = props => {
   return (
-    <div className="person" >
+    <div className={classes.person} >
       {/* I'm a Person with {Math.floor(Math.random() * 30)} years old! */}
       <p onClick={props.click}>
         I'm a {props.name} with {props.age} years old!

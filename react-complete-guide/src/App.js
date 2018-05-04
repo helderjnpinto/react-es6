@@ -51,6 +51,7 @@ class App extends Component {
     };
 
     let persons;
+    let btnClass = ''; 
 
     if (this.state.showPersons) {
       persons = this.state.persons.map((person, index) => {
@@ -73,6 +74,8 @@ class App extends Component {
 
       style.backgroundColor = "cyan";
       style.color = "black";
+
+      btnClass = classes.Red;
     }
     let _classes = [];
 
@@ -82,13 +85,18 @@ class App extends Component {
     if (this.state.persons.length <= 1) {
       _classes.push( classes.bold ); // classes = ['bold']
     }
+    
+
 
     return (
         <div className={classes.App}>
           <header className="App-header">
             <h1 className={_classes.join(" ")}> Welcome to React </h1>
           </header>
-          <button style={style} onClick={this.tooglePersonHandler}>
+          <button 
+          className={btnClass}
+          // style={style}
+          onClick={this.tooglePersonHandler}>
             Toggle persons
           </button>
 
