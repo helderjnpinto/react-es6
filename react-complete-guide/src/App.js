@@ -34,6 +34,14 @@ class App extends Component {
     });
   };
 
+  deletePersonHandler = index => {
+    // const persons = this.state.persons.slice(); copy arr
+    const persons = [...this.state.persons];
+    persons.splice(index, 1);
+    this.setState({persons});
+  }
+
+
   tooglePersonHandler = () => {
     this.setState({ showPersons: !this.state.showPersons });
   };
@@ -51,14 +59,16 @@ class App extends Component {
     let persons;
 
     if (this.state.showPersons) {
-      persons = this.state.persons.map(person => {
+      persons = this.state.persons.map((person, index) => {
         return (
           <Person
+            key={index}
             name={person.name}
             age={person.age}
             // two binding
             // click={() => this.handleClick("Max!!")} //  more inefficient
-            click={this.handleClick.bind(this, "Max!!")} //  more efficient
+            // click={this.handleClick.bind(this, "Max!!")} //  more efficient
+            click={this.deletePersonHandler.bind(this, index)}
             changed={this.nameChangeHandler}
           />
         );
