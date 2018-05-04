@@ -38,8 +38,10 @@ class App extends Component {
     const style = {
       backgroundColor: 'white',
       font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px'
+      border: '2px solid teal',
+      padding: '8px',
+      cursor: 'pointer',
+      color: 'teal'
     }
 
 
