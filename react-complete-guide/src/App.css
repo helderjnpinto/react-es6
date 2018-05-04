@@ -12,11 +12,11 @@
 }
 .App button {
     background-color: white;
-    font: "inherit";
-    border: "2px solid teal";
-    padding: "16px";
-    cursor: "pointer";
-    color: "teal";
+    font: inherit;
+    border: 2px solid teal;
+    padding: 16px;
+    cursor: pointer;
+    color: teal;
 }
 
 .App button:hover {

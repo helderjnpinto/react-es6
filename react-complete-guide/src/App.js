@@ -95,7 +95,6 @@ class App extends Component {
           </header>
           <button 
           className={btnClass}
-          // style={style}
           onClick={this.tooglePersonHandler}>
             Toggle persons
           </button>
