@@ -11,27 +11,23 @@ class App extends Component {
       { id: '3', name: "c", age: 3 }
     ],
     otherState: "some other value",
-    showPersons: false
+    showPersons: true
   };
 
-  handleClick = (name = "") => {
-    this.setState({
-      persons: [
-        { name: "AA", age: 1 },
-        { name: "BB", age: 2 },
-        { name: "CCC", age: 3 }
-      ]
+ 
+  nameChangeHandler = (e, personId) => {
+    const personIndex = this.state.persons.findIndex( p => {
+      return (p.id === personId);
     });
-  };
+    const person = {...this.state.persons[personIndex]}; // copy the person 
+    // const person = Object.assign({}, this.state.persons[personIndex]); // other valid copy method
+    person.name = e.target.value;
 
-  nameChangeHandler = event => {
-    this.setState({
-      persons: [
-        { name: "AA", age: 1 },
-        { name: event.target.value, age: 2 },
-        { name: "CCC", age: 3 }
-      ]
-    });
+    // change de old one 
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons });
   };
 
   deletePersonHandler = index => {
@@ -69,7 +65,7 @@ class App extends Component {
             // click={() => this.handleClick("Max!!")} //  more inefficient
             // click={this.handleClick.bind(this, "Max!!")} //  more efficient
             click={this.deletePersonHandler.bind(this, index)}
-            changed={this.nameChangeHandler}
+            changed={ (event) => {this.nameChangeHandler(event, person.id)} }
           />
         );
       });
@@ -82,7 +78,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <button style={style} onClick={this.tooglePersonHandler}>
-          Swith name
+          Toggle persons
         </button>
 
         {persons}
