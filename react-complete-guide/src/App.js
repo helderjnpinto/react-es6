@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Person from "./Person/Person";
+import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -70,12 +71,23 @@ class App extends Component {
         );
       });
       <div />;
+
+      style.backgroundColor = 'cyan';
+      style.color = 'black';
+    }
+    let classes = [];
+    
+    if (this.state.persons.length <= 2 ) {
+      classes.push('red'); // classes = ['red']
+    }
+    if (this.state.persons.length <= 1 ) {
+      classes.push('bold'); // classes = ['bold']
     }
 
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className={classes.join(' ')} > Welcome to React </h1>
         </header>
         <button style={style} onClick={this.tooglePersonHandler}>
           Toggle persons
@@ -87,4 +99,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
