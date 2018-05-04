@@ -7,9 +7,9 @@
   margin: 1em auto;
 }
 
-/* @media (min-width: 500px) {
+@media (min-width: 500px) {
   .person {
     width: 450px;
     background-color: rgb(241, 105, 25);
   }
-} */
+}
