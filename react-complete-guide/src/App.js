@@ -13,7 +13,11 @@ class App extends Component {
         </header>
 
         <Person name='Helder' age="29"/>
-        <Person name='Emanuel' age="40"/>
+        <Person name='Emanuel' age="40">
+        <div>
+          Props children...
+        </div>
+        </Person>
         <Person name='Xavi' age="22"/>
       </div>
     );
