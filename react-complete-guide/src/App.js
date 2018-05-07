@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./App.css";
 
 import Person from "./Person/Person";
+import ErrorBoundary from "./ErrorBoundery/ErrorBoundary";
 
 class App extends Component {
   state = {
@@ -47,27 +48,29 @@ class App extends Component {
       border: "2px solid teal",
       padding: "8px",
       cursor: "pointer",
-      color: "teal",
+      color: "teal"
     };
 
     let persons;
-    let btnClass = ''; 
+    let btnClass = "";
 
     if (this.state.showPersons) {
       persons = this.state.persons.map((person, index) => {
         return (
-          <Person
-            key={person.id}
-            name={person.name}
-            age={person.age}
-            // two binding
-            // click={() => this.handleClick("Max!!")} //  more inefficient
-            // click={this.handleClick.bind(this, "Max!!")} //  more efficient
-            click={this.deletePersonHandler.bind(this, index)}
-            changed={event => {
-              this.nameChangeHandler(event, person.id);
-            }}
-          />
+          <ErrorBoundary key={person.id}>
+            <Person
+              key={person.id}
+              name={person.name}
+              age={person.age}
+              // two binding
+              // click={() => this.handleClick("Max!!")} //  more inefficient
+              // click={this.handleClick.bind(this, "Max!!")} //  more efficient
+              click={this.deletePersonHandler.bind(this, index)}
+              changed={event => {
+                this.nameChangeHandler(event, person.id);
+              }}
+            />
+          </ErrorBoundary>
         );
       });
       <div />;
@@ -80,27 +83,23 @@ class App extends Component {
     let _classes = [];
 
     if (this.state.persons.length <= 2) {
-      _classes.push( classes.red ); // classes = ['red']
+      _classes.push(classes.red); // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      _classes.push( classes.bold ); // classes = ['bold']
+      _classes.push(classes.bold); // classes = ['bold']
     }
-    
-
 
     return (
-        <div className={classes.App}>
-          <header className="App-header">
-            <h1 className={_classes.join(" ")}> Welcome to React </h1>
-          </header>
-          <button 
-          className={btnClass}
-          onClick={this.tooglePersonHandler}>
-            Toggle persons
-          </button>
+      <div className={classes.App}>
+        <header className="App-header">
+          <h1 className={_classes.join(" ")}> Welcome to React </h1>
+        </header>
+        <button className={btnClass} onClick={this.tooglePersonHandler}>
+          Toggle persons
+        </button>
 
-          {persons}
-        </div>
+        {persons}
+      </div>
     );
   }
 }

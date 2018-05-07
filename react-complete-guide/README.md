@@ -1,3 +1,28 @@
+*********************************************************************************************************++
+# Css styles 
+  ## Using Radium 
+    - with this module we can use html ' inline style' with pseudo selectors and media queries for example 
+
+  ## Using webpack style-loader for add Styles as Javascript objects
+     >>> keys to add <localIdentName>,<module>;
+      -  test: /\.css$/,
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                  module: true,
+                  localIdentName: '[name]__[local]__[hash:base64:5]'
+                },
+              },
+              {
+
+
+*********************************************************************************************************++
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
