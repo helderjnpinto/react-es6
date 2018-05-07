@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from "./App.css";
 
-import Person from "./Person/Person";
+import Persons from "../components/Persons/Persons";
 // import ErrorBoundary from "./ErrorBoundery/ErrorBoundary"; only for test do not use every where
 
 class App extends Component {
@@ -55,26 +55,15 @@ class App extends Component {
     let btnClass = "";
 
     if (this.state.showPersons) {
-      persons = this.state.persons.map((person, index) => {
-        return (
+      persons = (
           // <ErrorBoundary key={person.id}> only visible in prod mode
-            <Person
-              key={person.id}
-              name={person.name}
-              age={person.age}
-              // two binding
-              // click={() => this.handleClick("Max!!")} //  more inefficient
-              // click={this.handleClick.bind(this, "Max!!")} //  more efficient
-              click={this.deletePersonHandler.bind(this, index)}
-              changed={event => {
-                this.nameChangeHandler(event, person.id);
-              }}
+            <Persons 
+              persons={this.state.persons}
+              clicked={this.deletePersonHandler}
+              changed={this.nameChangeHandler}
             />
           // </ErrorBoundary>
-        );
-      });
-      <div />;
-
+      );
       style.backgroundColor = "cyan";
       style.color = "black";
 
