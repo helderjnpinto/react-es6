@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classes from "./App.css";
 
 import Person from "./Person/Person";
-import ErrorBoundary from "./ErrorBoundery/ErrorBoundary";
+// import ErrorBoundary from "./ErrorBoundery/ErrorBoundary"; only for test do not use every where
 
 class App extends Component {
   state = {
@@ -57,7 +57,7 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = this.state.persons.map((person, index) => {
         return (
-          <ErrorBoundary key={person.id}>
+          // <ErrorBoundary key={person.id}> only visible in prod mode
             <Person
               key={person.id}
               name={person.name}
@@ -70,7 +70,7 @@ class App extends Component {
                 this.nameChangeHandler(event, person.id);
               }}
             />
-          </ErrorBoundary>
+          // </ErrorBoundary>
         );
       });
       <div />;

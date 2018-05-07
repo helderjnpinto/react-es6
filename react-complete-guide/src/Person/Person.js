@@ -3,10 +3,10 @@ import React, { Component } from "react";
 import classes from "./Person.css";
 
 const person = props => {
-  const rand = Math.random();
-  if (rand > 0.7) {
-    throw new Error("Something went wrong");
-  }
+  // const rand = Math.random();
+  // if (rand > 0.7) {
+  //   throw new Error("Something went wrong");
+  // } for testing error boundary
 
   return (
       <div className={classes.person}>
