@@ -3,6 +3,7 @@ import classes from "./App.css";
 
 import Persons from "../components/Persons/Persons";
 // import ErrorBoundary from "./ErrorBoundery/ErrorBoundary"; only for test do not use every where
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -52,41 +53,28 @@ class App extends Component {
     };
 
     let persons;
-    let btnClass = "";
 
     if (this.state.showPersons) {
       persons = (
-          // <ErrorBoundary key={person.id}> only visible in prod mode
-            <Persons 
-              persons={this.state.persons}
-              clicked={this.deletePersonHandler}
-              changed={this.nameChangeHandler}
-            />
-          // </ErrorBoundary>
+        // <ErrorBoundary key={person.id}> only visible in prod mode
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangeHandler}
+        />
+        // </ErrorBoundary>
       );
       style.backgroundColor = "cyan";
       style.color = "black";
-
-      btnClass = classes.Red;
-    }
-    let _classes = [];
-
-    if (this.state.persons.length <= 2) {
-      _classes.push(classes.red); // classes = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      _classes.push(classes.bold); // classes = ['bold']
     }
 
     return (
       <div className={classes.App}>
-        <header className="App-header">
-          <h1 className={_classes.join(" ")}> Welcome to React </h1>
-        </header>
-        <button className={btnClass} onClick={this.tooglePersonHandler}>
-          Toggle persons
-        </button>
-
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.tooglePersonHandler}
+        />
         {persons}
       </div>
     );
