@@ -19,7 +19,7 @@ const cockpit = props => {
   return (
     <div className={classes.Cockpit}>
       <header className="App-header">
-        <h1 className={_classes.join(" ")}> Welcome to React </h1>
+        <h1 className={_classes.join(" ")}> Welcome to React  { props.appTitle } </h1>
       </header>
       <button className={btnClass} onClick={props.clicked}>
         Toggle persons
