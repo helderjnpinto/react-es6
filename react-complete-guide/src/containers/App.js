@@ -15,6 +15,16 @@ class App extends Component {
     showPersons: true
   };
 
+
+  componentDidMount() {
+    console.log('compent Did mount')
+  }
+
+componentWillMount() {
+  console.log('compent will mount')
+  
+}
+
   nameChangeHandler = (e, personId) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === personId;
@@ -42,6 +52,8 @@ class App extends Component {
   };
 
   render() {
+    console.log('render')
+    
     const style = {
       backgroundColor: "white",
       font: "inherit",
