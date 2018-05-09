@@ -4,8 +4,6 @@ import classes from "./BuildControls.css";
 
 import BuildControl from "./BuildControl/BuildControl";
 
-
-
 const buildControls = props => {
   const controls = [
     { label: "Salad", type: "salad" },
@@ -15,9 +13,24 @@ const buildControls = props => {
   ];
   return (
     <div className={classes.BuildControls}>
+    <p>Current price: <strong>{props.price.toFixed(2)}</strong></p>
       {controls.map(ctrl => {
-        return <BuildControl key={ctrl.label} label={ctrl.label} />;
+        return (
+          <BuildControl
+            key={ctrl.label}
+            label={ctrl.label}
+            removed={() => props.ingredienteRemoved(ctrl.type)}
+            added={() => props.ingredienteAdded(ctrl.type)}
+            disabled={props.disabled[ctrl.type]}
+          />
+        );
       })}
+
+      <button 
+      className={classes.OrderButton}
+      disabled={!props.purchaseable}
+      onClick={props.ordered}
+      >ORDER NOW</button>
     </div>
   );
 };
